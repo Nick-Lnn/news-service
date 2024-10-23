@@ -75,6 +75,7 @@ public class BulletinService {
         response.setId(bulletin.getId());
         response.setAccountId(bulletin.getAccountId());
         response.setSenderUserId(bulletin.getSenderUserId());
+        response.setSenderUsername(bulletin.getSenderUsername());
         response.setBody(bulletin.getBody());
         response.setCreatedDate(bulletin.getCreatedDate());
         response.setCommentsCounter(bulletin.getCommentsCounter());
