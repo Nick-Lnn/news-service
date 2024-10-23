@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
  * @author Nicolas
  */
 @RestController
-@RequestMapping("/api/bulletins")
+@RequestMapping("/api/news-service/bulletins")
 @RequiredArgsConstructor
 public class BulletinController {
 
@@ -31,8 +31,6 @@ public class BulletinController {
 
     @GetMapping
     public ResponseEntity<Page<BulletinListResponse>> listBulletins(
-            @RequestHeader("Account-ID") Long accountId,
-            @RequestHeader("User-ID") Long userId,
             Pageable pageable) {
         Page<BulletinListResponse> bulletins = bulletinService.listAllBulletinsSortedByDate(pageable);
         return ResponseEntity.ok(bulletins);
