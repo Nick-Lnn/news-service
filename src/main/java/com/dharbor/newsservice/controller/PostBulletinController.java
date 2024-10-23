@@ -1,12 +1,9 @@
 package com.dharbor.newsservice.controller;
 
 import com.dharbor.newsservice.api.request.CreateBulletinRequest;
-import com.dharbor.newsservice.api.response.BulletinListResponse;
 import com.dharbor.newsservice.api.response.CreateBulletinResponse;
-import com.dharbor.newsservice.service.BulletinService;
+import com.dharbor.newsservice.service.PostBulletinService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,23 +13,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/news-service/bulletins")
 @RequiredArgsConstructor
-public class BulletinController {
+public class PostBulletinController {
 
-    private final BulletinService bulletinService;
+    private final PostBulletinService postBulletinService;
 
     @PostMapping
     public ResponseEntity<CreateBulletinResponse> createBulletin(
             @RequestHeader("Account-ID") Long accountId,
             @RequestHeader("User-ID") Long userId,
             @RequestBody CreateBulletinRequest request) {
-        CreateBulletinResponse response = bulletinService.createBulletin(request, accountId, userId);
+        CreateBulletinResponse response = postBulletinService.createBulletin(request, accountId, userId);
         return ResponseEntity.ok(response);
-    }
-
-    @GetMapping
-    public ResponseEntity<Page<BulletinListResponse>> listBulletins(
-            Pageable pageable) {
-        Page<BulletinListResponse> bulletins = bulletinService.listAllBulletinsSortedByDate(pageable);
-        return ResponseEntity.ok(bulletins);
     }
 }
