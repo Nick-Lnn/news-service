@@ -26,6 +26,9 @@ public class Bulletin {
     private Long senderUserId;
 
     @Column(nullable = false)
+    private String senderUsername;
+
+    @Column(nullable = false)
     private String body;
 
     @Column(nullable = false)

@@ -13,6 +13,7 @@ public class CreateBulletinResponse {
     private Long id;
     private Long accountId;
     private Long senderUserId;
+    private String senderUsername;
     private String body;
     private Instant createdDate;
     private List<String> fileIds;

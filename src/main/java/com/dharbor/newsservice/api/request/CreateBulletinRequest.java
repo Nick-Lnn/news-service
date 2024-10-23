@@ -11,4 +11,5 @@ import java.util.List;
 public class CreateBulletinRequest {
     private String content;
     private List<String> fileIds;
+    private String senderUsername;
 }

@@ -28,6 +28,7 @@ public class BulletinService {
         Bulletin bulletin = new Bulletin();
         bulletin.setAccountId(accountId);
         bulletin.setSenderUserId(userId);
+        bulletin.setSenderUsername(request.getSenderUsername());
         bulletin.setBody(request.getContent());
 
         if (request.getFileIds() != null && !request.getFileIds().isEmpty()) {
@@ -52,6 +53,7 @@ public class BulletinService {
         response.setId(bulletin.getId());
         response.setAccountId(bulletin.getAccountId());
         response.setSenderUserId(bulletin.getSenderUserId());
+        response.setSenderUsername(bulletin.getSenderUsername());
         response.setBody(bulletin.getBody());
         response.setCreatedDate(bulletin.getCreatedDate());
         if (bulletin.getAttachments() != null) {
