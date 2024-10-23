@@ -6,6 +6,7 @@ import com.dharbor.newsservice.api.response.CreateBulletinResponse;
 import com.dharbor.newsservice.service.BulletinService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,10 +33,8 @@ public class BulletinController {
     public ResponseEntity<Page<BulletinListResponse>> listBulletins(
             @RequestHeader("Account-ID") Long accountId,
             @RequestHeader("User-ID") Long userId,
-            @RequestParam(required = false) String content,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
-        Page<BulletinListResponse> bulletins = bulletinService.listBulletins(content, page, size);
+            Pageable pageable) {
+        Page<BulletinListResponse> bulletins = bulletinService.listAllBulletinsSortedByDate(pageable);
         return ResponseEntity.ok(bulletins);
     }
 }

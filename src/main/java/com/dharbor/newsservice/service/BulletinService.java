@@ -9,6 +9,8 @@ import com.dharbor.newsservice.model.repository.BulletinRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
@@ -80,5 +82,15 @@ public class BulletinService {
                     .collect(Collectors.toList()));
         }
         return response;
+    }
+
+    public Page<BulletinListResponse> listAllBulletinsSortedByDate(Pageable pageable) {
+        Pageable sortedPageable = PageRequest.of(
+                pageable.getPageNumber(),
+                pageable.getPageSize(),
+                Sort.by(Sort.Direction.DESC, "createdDate")
+        );
+        return bulletinRepository.findAll(sortedPageable)
+                .map(this::mapToBulletinListResponse);
     }
 }
